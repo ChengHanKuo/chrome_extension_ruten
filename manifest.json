@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "Ruten Helper",
+  "description": "Judging products in ruten's trust value. ",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [ {
+    "js": [ "jquery-1.12.2.min.js", "content.js" ],
+    "matches": [ "http://*/*", "https://*/*"]
+  }],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

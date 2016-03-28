@@ -20,7 +20,7 @@ function getInfo() {
 
 	var reputation = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-owner.media-img-rev > p:nth-child(7) > a.text-medium > strong");
 	var quantity_available = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2) > strong")
-	var quantity_sold = ("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2) > strong")
+	var quantity_sold = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2) > strong")
 	var location = $("#product-memo > li.location > span")
 
 	if (reputation.html() <= 1000) {
@@ -38,7 +38,7 @@ function getInfo() {
 	alert("Trust Score: 83" + "\n"
 		+ "Trust Scope: VERY HIGH" + "\n"
 		+ "\nReputation:" + reputation.html() + "\n"
-		+ "\nQuantity:" + quantity_available.html() + "\n"
+		+ "\nQuantity:" + quantity_sold.html() + "\n"
 		+ "\n"
 		+ "Payment Method:\n"
 		+ payment_method.join('\n') + "\n"

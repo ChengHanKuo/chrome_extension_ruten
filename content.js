@@ -2,26 +2,49 @@ function getInfo() {
 	var item_title = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > h2");
 	if (item_title.length == 0) return;
 
+	var payment_method = $('.item-detail-table:contains("付款方式") .detail-list li')
+		.toArray()
+		.map(function(li) {
+			return $(li).text();
+		})
+		.filter(function(text) {
+			return text.trim() !== "";
+		});
+
+	var delivery_method = $('.item-detail-table:contains("運送方式") .detail-list li span')
+		.toArray()
+		.map(function(li) {
+			return $(li).text();
+		})
+	console.log(payment_method);
+
 	var reputation = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-owner.media-img-rev > p:nth-child(7) > a.text-medium > strong");
-	var payment_method_1 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub0 > span")
-	var payment_method_2 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub1 > span")
-	var payment_method_3 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub2 > span")
-	var payment_method_4 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub3 > span")
-	var payment_method_5 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub4 > span")
-	var payment_method_6 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub5 > span")
-	var payment_method_7 = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(3) > tbody > tr > td:nth-child(2) > ul > li.sub6 > span")
+	var quantity_available = $("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2) > strong")
+	var quantity_sold = ("#wwwRutenComTw > div.rt-page > div.base-theme.rt-goods.rt-wrap > div > div.rt-grid-4-5.side-shadow.customizable-sideshadow > div > div.intro-section.clearfix.auction-data > div.intro-section-right.product-purchase > div.item-purchase.customizable-borderless.purchase-section > div > div.item-info-detail.media-body > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2) > strong")
 	var location = $("#product-memo > li.location > span")
-	alert("Reputation:" + reputation.html() + "\n"
+
+	if (reputation.html() <= 1000) {
+		var reputation_score = 20;
+	}else if (reputation.html() > 1000 && reputation.html() <= 2000) {
+		var reputation_score = 40;
+	}else if (reputation.html() > 2000 && reputation.html() <= 3000) {
+		var reputation_score = 60;
+	}else if (reputation.html() > 3000 && reputation.html() <= 4000) {
+		var reputation_score = 80;
+	}else{
+		var reputation_score = 100;
+	}
+
+	alert("Trust Score: 83" + "\n"
+		+ "Trust Scope: VERY HIGH" + "\n"
+		+ "\nReputation:" + reputation.html() + "\n"
+		+ "\nQuantity:" + quantity_available.html() + "\n"
 		+ "\n"
-		+ "Payment Method:\n"+ payment_method_1.html() + "\n" 
-		+ payment_method_2.html() + "\n"
-		+ payment_method_3.html() + "\n"
-		+ payment_method_4.html() + "\n"
-		+ payment_method_5.html() + "\n"
-		+ payment_method_6.html() + "\n"
-		+ payment_method_7.html() + "\n"
-		+ "\n"
-		+ "location:\n"
+		+ "Payment Method:\n"
+		+ payment_method.join('\n') + "\n"
+		+ "\nDelivery Method:\n"
+		+ delivery_method.join('\n')+ "\n"
+		+ "\nLocation:\n"
 		+ location.html() + "\n"
 	);
 	chrome.runtime.sendMessage({

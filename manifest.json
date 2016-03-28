@@ -2,8 +2,10 @@
   "manifest_version": 2,
 
   "name": "Ruten Helper",
-  "description": "Judging products in ruten's trust value. ",
+  "description": "Judging trust value and trust scope in ruten market. ",
   "version": "1.0",
+
+  "options_page": "options.html",
 
   "permissions": [
     "tabs", "<all_urls>"
